@@ -1,0 +1,32 @@
+{% extends 'tournaments/base.html' %}
+
+{% block content %}
+    <h2>{{ tournament.name }} Participants</h2>
+    {% if tournament.participants.all %}
+    <div class="row">
+    {% for participant in tournament.participants.all %}
+    <div class="col-md-4">
+        <div class="card  mb-4" style="min-width: 400px; margin: auto;">
+            <div class="card-header">
+                {{ tournament.game }}
+            </div>
+        <a href="{% url 'tournaments:view_tournament' id=tournament.id %}"><div class="card-body">
+            <blockquote class="blockquote mb-0">
+              <p>{{ participant.username }}</p>
+              <footer class="blockquote-footer">{{ tournament.game }} oganised by <cite title="Source Title">{{ tournament.organizer }}</cite></footer>
+            </blockquote>
+            <!-- <li><a href="{% url 'tournaments:view_tournament' id=tournament.id %}">{{ tournament.title }}</a> </li> -->
+        </div></a>
+    </div>
+    </div> 
+
+    {% endfor %}      </div> 
+    <!-- <ol>
+            {% for participant in tournament.participants.all %}
+                <li>{{ participant.username }}</li>
+            {% endfor %}
+        </ol> -->
+    {% else %}
+        <p>No participants in this tournament yet.</p>
+    {% endif %}
+{% endblock %}

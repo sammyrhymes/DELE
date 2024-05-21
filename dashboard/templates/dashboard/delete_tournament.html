@@ -1,0 +1,15 @@
+{% extends 'tournaments/base.html' %}
+
+{% block content %}
+<div class="container text-center py-5">
+  <h1>Delete Tournament</h1>
+  
+  <h4>Are you sure you want to delete the tournament "{{ tournament.title }}"?</h4>
+  
+  <form method="post" action="{% url 'tournaments:delete_tournament' tournament.id %}">
+    {% csrf_token %}
+    <button class="mr-2 btn btn-danger" type="submit">Delete</button>
+    <button class="btn btn-primary"><a class='text-white' href="{% url 'tournaments:view_tournament' tournament.id %}">Cancel</a></button>
+  </form>
+</div>
+{% endblock %}
