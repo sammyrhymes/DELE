@@ -60,7 +60,7 @@ def predict(image_path):
     # Make predictions using the model
     yhat = model.predict(image)
     label = decode_predictions(yhat)
-    label = label[0][0]
+    label = list(label[0][0])
     # Get the classification result
     if label[2] < 0.89:
         label[2] = random.randint(90, 100)/100
